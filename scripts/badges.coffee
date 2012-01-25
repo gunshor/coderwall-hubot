@@ -3,10 +3,9 @@ module.exports = (robot) ->
     username = msg.match[1]
     msg.send "http://coderwall.com/#{username}"
     msg.http("http://api.coderwall.com/#{username}.json").get() (err, res, body) ->
-      if err
-        msg.send "Sorry! I couldn't find any badges for #{username}."
-      else
-        msg.send res
-        response = JSON.parse(body)
-        badges = response["badges"].map (badge) -> badge["name"]
+      if body?
+        json = JSON.parse(body)
+        badges = json["badges"].map (badge) -> badge["name"]
         msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}."
+      else
+        msg.send "Sorry! Couldn't retrieve any badges."
