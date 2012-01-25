@@ -15,6 +15,6 @@ module.exports = (robot) ->
         msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}."
   
   robot.respond /endorse (.*)/i, (msg) ->
-    username = msg.match[0]
+    username = msg.match[1]
     msg.send("http://coderwall.com/#{username}#endorse")
     msg.send("http://api.coderwall.com/#{username}/endorsecount.png")
