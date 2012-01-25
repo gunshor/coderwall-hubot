@@ -3,7 +3,7 @@ module.exports = (robot) ->
     username = msg.match[1]
     msg.send "http://coderwall.com/#{username}"
     msg.http("http://api.coderwall.com/#{username}.json").get() (err, res, body) ->
-      if response.statusCode == 404
+      if res.statusCode is 404
         msg.send "Sorry! Couldn't retrieve any badges."
       else
         json = JSON.parse(body)
