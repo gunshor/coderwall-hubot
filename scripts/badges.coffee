@@ -6,6 +6,7 @@ module.exports = (robot) ->
       if err
         msg.send "Sorry! I couldn't find any badges for #{username}."
       else
+        msg.send response
         response = JSON.parse(body)
         badges = response["badges"].map (badge) -> badge["name"]
         msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}."
