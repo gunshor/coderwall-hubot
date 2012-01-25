@@ -16,8 +16,5 @@ module.exports = (robot) ->
   
   robot.respond /endorse (.*)/i, (msg) ->
     username = msg.match[0]
-    msg.send("""
-      <a href="http://coderwall.com/mdeiters">
-        <img src="http://api.coderwall.com/mdeiters/endorsecount.png" />
-      </a>
-    """)
+    msg.send("http://coderwall.com/#{username}#endorse")
+    msg.send("http://api.coderwall.com/#{username}/endorsecount.png")
