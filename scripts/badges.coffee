@@ -13,4 +13,11 @@ module.exports = (robot) ->
         json = JSON.parse(body)
         badges = json["badges"].map (badge) -> badge["name"]
         msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}."
-        
+  
+  robot.respond /endorse (.*)/i, (msg) ->
+    username = msg.match[0]
+    msg.send("""
+      <a href="http://coderwall.com/mdeiters">
+        <img src="http://api.coderwall.com/mdeiters/endorsecount.png" />
+      </a>
+    """)
