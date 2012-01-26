@@ -11,9 +11,13 @@ module.exports = (robot) ->
         msg.send "Sorry! I couldn't find any badges for that user."
       else
         json = JSON.parse(body)
-        badges = json["badges"].map (badge) -> badge["name"]
-        msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}."
-  
+        badges = json["badges"]
+        badgeNames = badges.map (badge) -> badge["name"]
+        randomBadge = badges[Math.floor(Math.random() * badges.length)]["badge"]
+
+        msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}. Here's one:"
+        msg.send randomBadge
+    
   robot.respond /endorse (.*)/i, (msg) ->
     username = msg.match[1]
     msg.send("http://coderwall.com/#{username}#endorse")
