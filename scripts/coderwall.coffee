@@ -15,7 +15,7 @@ module.exports = (robot) ->
         badgeNames = badges.map (badge) -> badge["name"]
         randomBadge = badges[Math.floor(Math.random() * badges.length)]["badge"]
 
-        msg.send "#{username} has #{badges.length} badges: #{badges.join(", ")}. Here's one:"
+        msg.send "#{username} has #{badges.length} badges: #{badgeNames.join(", ")}. Here's one:"
         msg.send randomBadge
     
   robot.respond /endorse (.*)/i, (msg) ->
