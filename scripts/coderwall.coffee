@@ -4,7 +4,6 @@
 module.exports = (robot) ->
   robot.respond /badges (?:for )?(.*)/i, (msg) ->
     username = msg.match[1]
-    msg.send "http://coderwall.com/#{username}"
 
     msg.http("http://api.coderwall.com/#{username}.json").get() (err, res, body) ->
       if res.statusCode is 404
@@ -15,7 +14,7 @@ module.exports = (robot) ->
         badgeNames = badges.map (badge) -> badge["name"]
         randomBadge = badges[Math.floor(Math.random() * badges.length)]["badge"]
 
-        msg.send "#{username} has #{badges.length} badges: #{badgeNames.join(", ")}. Here's one:"
+        msg.send "http://coderwall.com/#{username} has #{badges.length} badges: #{badgeNames.join(", ")}. Here's one:"
         msg.send randomBadge
     
   robot.respond /endorse (.*)/i, (msg) ->
